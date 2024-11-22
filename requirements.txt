@@ -1,12 +1,13 @@
-numpy==1.26.4
+numpy
 pandas
-pytube==15.0.0
-requests==2.32.3
-scrapetube==2.5.1
+pytube
+requests
+scrapetube
 streamlit
 streamlit_analytics2
 
 git+https://github.com/Rafipilot/embedding_bucketing
+git+https://github.com/aolabsai/ao_streamlit
 # git+https://github.com/aolabsai/ao_core
 # git+https://github.com/aolabsai/ao_arch
 
