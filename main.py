@@ -1,5 +1,5 @@
 import streamlit as st
-
+import os
 # for getting random links
 import scrapetube 
 import random
@@ -14,10 +14,14 @@ import streamlit_analytics2
 from pytube import YouTube
 #for bucketing
 import embedding_bucketing.embedding_model_test as em
-#own modules ao_core arch and config
-from config import openai_api_key
+#own modules ao_core arch
 import ao_core as ao
 from arch__Recommender import arch
+
+# openai api key for embedding model
+from dotenv import load_dotenv
+load_dotenv()
+openai_api_key = os.getenv('OPENAI_API_KEY')
 
 import time
 # Initialize global variables

@@ -23,10 +23,17 @@ If you plan to run the app in a conda or virtual environment, make sure to set u
     pip install git+https://github.com/aolabsai/ao_arch git+https://github.com/aolabsai/ao_core
     ```
 
-3. Run the application with the following command:
+3. Create a .env file in the root directory and add your openai api key for embedding model:
 
     ```bash
-    streamlit run recommender.py
+    OPENAI_API_KEY=your_openai_api_key_here
+    ```
+*Note: make sure the key has the permissions to use the embedding models, it actually uses the `text-embedding-3-small` model and the `gpt-3.5-turbo` model*
+
+4. Run the application with the following command:
+
+    ```bash
+    streamlit run main.py --server.port 8501
     ```
 
 4. Once running, the app will be accessible at `localhost:8501`.

@@ -5,6 +5,7 @@ requests==2.32.3
 scrapetube==2.5.1
 streamlit
 streamlit_analytics2
+python-dotenv
 
 git+https://github.com/Rafipilot/embedding_bucketing
 # git+https://github.com/aolabsai/ao_core

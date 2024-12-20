@@ -3,3 +3,4 @@ __pycache__
 .env
 genre_embedding_cache.json
 recommendr
+venv/
