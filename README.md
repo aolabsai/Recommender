@@ -55,10 +55,35 @@ You're done! Access the app at `localhost:8501` in your browser.
 
 The recommender system works by loading a set of random video links. Once the user hits the Run button, a video will be shown, and the system will suggest whether it recommends the video or not. The user can then provide feedback using "pain" or "pleasure" signals to guide the recommendation process. Based on this feedback, the system adjusts its responses and suggests another video. This cycle continues, allowing for more accurate and personalized recommendations over time.
 
+## Learning Resource Domain Demo
+
+This fork also includes a second domain for the open bounty: a local learning-resource recommender for courses, articles, videos, and hands-on projects. It demonstrates how the AO recommender can continuously adapt to a user's current learning goal, such as shipping a prototype, deepening fundamentals, or preparing for interviews.
+
+The demo uses a small local catalog in `learning_domain.py` and encodes each resource into binary features for:
+
+- topic
+- format
+- duration
+- difficulty
+- hands-on vs. conceptual style
+- free vs. paid access
+- learner goal
+
+Run the focused domain tests:
+
+```bash
+python -m unittest tests/test_learning_domain.py
+```
+
+Run the Streamlit demo:
+
+```bash
+streamlit run learning_recommender.py
+```
+
 
 ## Contributing
 
 Fork the repository, make your changes, and submit a pull request for review. 
-
 
 
