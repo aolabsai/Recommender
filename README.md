@@ -23,13 +23,41 @@ If you plan to run the app in a conda or virtual environment, make sure to set u
     pip install git+https://github.com/aolabsai/ao_arch git+https://github.com/aolabsai/ao_core
     ```
 
-3. Run the application with the following command:
+3. Run the YouTube recommender application with the following command:
 
     ```bash
-    streamlit run recommender.py
+    streamlit run main.py
     ```
 
 4. Once running, the app will be accessible at `localhost:8501`.
+
+### Movie Domain Demo
+
+This fork also includes a second recommender domain that applies the same AO Labs
+real-time training pattern to a local movie dataset. Instead of fetching YouTube
+videos, the demo recommends sample movies using binary features for genre,
+runtime, recency, rating, and viewing mood.
+
+Run the movie recommender with:
+
+```bash
+streamlit run movie_recommender.py
+```
+
+The movie demo can run in two modes:
+
+- With `ao_core` and `ao_arch` installed, it creates a live AO Agent from
+  `arch__MovieRecommender.py` and trains it from the "Recommend more" and
+  "Stop recommending" feedback buttons.
+- Without those AO packages installed, it uses a deterministic local fallback so
+  the domain mapping, interface, and tests can still be exercised.
+
+The movie-domain mapping lives in `movie_domain.py`. Its unit tests can be run
+with:
+
+```bash
+python -m unittest discover -s tests
+```
 
 
 ### Docker Installation
@@ -59,6 +87,5 @@ The recommender system works by loading a set of random video links. Once the us
 ## Contributing
 
 Fork the repository, make your changes, and submit a pull request for review. 
-
 
 
