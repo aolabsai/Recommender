@@ -26,7 +26,7 @@ If you plan to run the app in a conda or virtual environment, make sure to set u
 3. Run the application with the following command:
 
     ```bash
-    streamlit run recommender.py
+    streamlit run main.py
     ```
 
 4. Once running, the app will be accessible at `localhost:8501`.
@@ -55,10 +55,30 @@ You're done! Access the app at `localhost:8501` in your browser.
 
 The recommender system works by loading a set of random video links. Once the user hits the Run button, a video will be shown, and the system will suggest whether it recommends the video or not. The user can then provide feedback using "pain" or "pleasure" signals to guide the recommendation process. Based on this feedback, the system adjusts its responses and suggests another video. This cycle continues, allowing for more accurate and personalized recommendations over time.
 
+## Recipe Domain Demo
+
+This repository also includes a recipe and meal-planning recommender domain that demonstrates how the same continuously trainable pattern can work beyond YouTube videos.
+
+The demo uses a local recipe catalog with cuisine, meal slot, cook time, difficulty, dietary tags, and meal context labels. These features are converted into binary AO inputs in `recipe_domain.py`, using the architecture in `arch__RecipeRecommender.py`.
+
+Run the recipe demo with:
+
+```bash
+streamlit run recipe_recommender.py
+```
+
+The recipe app supports a live AO Agent when `ao_core` and `ao_arch` are installed. If those private packages are unavailable during review, it falls back to a deterministic scorer so the workflow, dataset, and feature encoding can still be tested locally.
+
+Recipe-domain validation:
+
+```bash
+python3 -m unittest discover -s tests
+python3 -m py_compile recipe_domain.py recipe_recommender.py arch__RecipeRecommender.py tests/test_recipe_domain.py
+```
+
 
 ## Contributing
 
 Fork the repository, make your changes, and submit a pull request for review. 
-
 
 
