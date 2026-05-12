@@ -148,8 +148,7 @@ def recommend_books(preferences, catalog=None, limit=3):
     catalog = catalog or BOOK_CATALOG
     ranked = sorted(
         catalog,
-        key=lambda book: (score_book(book, preferences), book["title"]),
-        reverse=True,
+        key=lambda book: (-score_book(book, preferences), book["title"]),
     )
     return ranked[:limit]
 

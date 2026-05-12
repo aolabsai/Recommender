@@ -66,7 +66,7 @@ if agent is None:
 
 for book in recommend_books(preferences, BOOK_CATALOG, limit=3):
     vote = agent_vote(agent, book, mood)
-    with st.container(border=True):
+    with st.container():
         st.subheader(book["title"])
         st.write(
             f"{book['genre']} · {book['pace']} pace · {book['length']} · "
