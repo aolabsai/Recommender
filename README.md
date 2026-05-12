@@ -55,10 +55,40 @@ You're done! Access the app at `localhost:8501` in your browser.
 
 The recommender system works by loading a set of random video links. Once the user hits the Run button, a video will be shown, and the system will suggest whether it recommends the video or not. The user can then provide feedback using "pain" or "pleasure" signals to guide the recommendation process. Based on this feedback, the system adjusts its responses and suggests another video. This cycle continues, allowing for more accurate and personalized recommendations over time.
 
+## Fitness Domain Demo
+
+This fork also includes a distinct fitness/workout recommender domain for the
+AO Labs open bounty.
+
+The fitness demo uses a local workout catalog and encodes both workout metadata
+and user context into binary inputs:
+
+- workout goal, intensity, duration bucket, and equipment
+- user goal, energy level, time budget, and available equipment
+
+It can run in two modes:
+
+- With AO packages installed: `fitness_recommender.py` creates an AO Agent from
+  `arch__FitnessRecommender.py` and can train on "recommend more" / "recommend
+  less" feedback.
+- Without AO packages installed: it uses a deterministic fallback ranker, so
+  reviewers can still run the app and tests without private dependencies.
+
+Run the demo:
+
+```bash
+streamlit run fitness_recommender.py
+```
+
+Run the domain tests:
+
+```bash
+python -m unittest discover -s tests
+```
+
 
 ## Contributing
 
 Fork the repository, make your changes, and submit a pull request for review. 
-
 
 
