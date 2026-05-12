@@ -23,13 +23,51 @@ If you plan to run the app in a conda or virtual environment, make sure to set u
     pip install git+https://github.com/aolabsai/ao_arch git+https://github.com/aolabsai/ao_core
     ```
 
-3. Run the application with the following command:
+3. Run the YouTube recommender application with the following command:
 
     ```bash
-    streamlit run recommender.py
+    streamlit run main.py
     ```
 
 4. Once running, the app will be accessible at `localhost:8501`.
+
+### Music Domain Demo
+
+This fork adds a second recommender domain that applies the same AO Labs
+real-time training loop to music discovery. Instead of fetching YouTube videos,
+the demo recommends tracks from a local sample catalog using binary features for
+genre, tempo, energy, release recency, vocal/instrumental format, and listening
+context.
+
+Run the music recommender with:
+
+```bash
+streamlit run music_recommender.py
+```
+
+The music demo can run in two modes:
+
+- With `ao_core` and `ao_arch` installed, it creates a live AO Agent from
+  `arch__MusicRecommender.py` and trains it from the "Recommend more" and
+  "Stop recommending" feedback buttons.
+- Without those AO packages installed, it uses a deterministic local fallback so
+  the domain mapping, interface, and tests can still be exercised.
+
+The music-domain mapping lives in `music_domain.py`. Its unit tests can be run
+with:
+
+```bash
+python -m unittest discover -s tests
+```
+
+The sidebar can also load a custom CSV catalog, which makes the demo reusable
+for a real music dataset instead of only the bundled sample tracks. The CSV
+must include:
+
+```csv
+title,artist,genres,tempo_bpm,energy,release_year,vocal,summary
+City Lights,Example Artist,electronic;pop,118,8,2024,no,Bright synth pulse
+```
 
 
 ### Docker Installation
@@ -59,6 +97,4 @@ The recommender system works by loading a set of random video links. Once the us
 ## Contributing
 
 Fork the repository, make your changes, and submit a pull request for review. 
-
-
 
