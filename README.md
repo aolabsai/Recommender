@@ -55,10 +55,13 @@ You're done! Access the app at `localhost:8501` in your browser.
 
 The recommender system works by loading a set of random video links. Once the user hits the Run button, a video will be shown, and the system will suggest whether it recommends the video or not. The user can then provide feedback using "pain" or "pleasure" signals to guide the recommendation process. Based on this feedback, the system adjusts its responses and suggests another video. This cycle continues, allowing for more accurate and personalized recommendations over time.
 
+## Additional Domain Examples
+
+- [Product Catalog Recommender](PRODUCT_RECOMMENDER.md): e-commerce recommendations with a local product catalog, AO-compatible 8-bit encoding, Streamlit UI, and deterministic fallback tests.
+
 
 ## Contributing
 
 Fork the repository, make your changes, and submit a pull request for review. 
-
 
 
