@@ -55,6 +55,23 @@ You're done! Access the app at `localhost:8501` in your browser.
 
 The recommender system works by loading a set of random video links. Once the user hits the Run button, a video will be shown, and the system will suggest whether it recommends the video or not. The user can then provide feedback using "pain" or "pleasure" signals to guide the recommendation process. Based on this feedback, the system adjusts its responses and suggests another video. This cycle continues, allowing for more accurate and personalized recommendations over time.
 
+## Book Domain Demo
+
+This fork also includes a local book recommendation domain that can run without paid APIs:
+
+```bash
+streamlit run book_recommender.py
+```
+
+The demo uses `book_domain.py` for a small local catalog and deterministic fallback ranking. If `ao_core` and `ao_arch` are installed, `book_recommender.py` will also initialize an AO agent using `arch__BookRecommender.py`; otherwise it remains runnable with the fallback path.
+
+Validation:
+
+```bash
+python -m unittest discover -s tests
+python -m py_compile book_domain.py book_recommender.py arch__BookRecommender.py tests/test_book_domain.py
+```
+
 
 ## Contributing
 
