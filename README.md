@@ -26,10 +26,32 @@ If you plan to run the app in a conda or virtual environment, make sure to set u
 3. Run the application with the following command:
 
     ```bash
-    streamlit run recommender.py
+    streamlit run main.py
     ```
 
 4. Once running, the app will be accessible at `localhost:8501`.
+
+### Personal Finance Domain Demo
+
+This repository also includes a personal finance domain adaptation that recommends budgeting and money-habit actions from a local catalog. It can run with AO packages installed, and it also includes a deterministic fallback path so reviewers can test the domain without private packages or paid APIs.
+
+Run the finance demo:
+
+```bash
+streamlit run finance_recommender.py
+```
+
+Run the fallback CLI:
+
+```bash
+python finance_recommender.py
+```
+
+Run the finance domain tests:
+
+```bash
+python -m unittest tests/test_finance_domain.py
+```
 
 
 ### Docker Installation
@@ -55,10 +77,11 @@ You're done! Access the app at `localhost:8501` in your browser.
 
 The recommender system works by loading a set of random video links. Once the user hits the Run button, a video will be shown, and the system will suggest whether it recommends the video or not. The user can then provide feedback using "pain" or "pleasure" signals to guide the recommendation process. Based on this feedback, the system adjusts its responses and suggests another video. This cycle continues, allowing for more accurate and personalized recommendations over time.
 
+The finance demo follows the same continuous-feedback pattern with a different domain. It encodes each financial action into the same eight-bit AO-compatible input shape using action focus, time horizon, risk, and the user's current money goal. User feedback updates fallback rankings immediately and trains an AO Agent when optional AO packages are available.
+
 
 ## Contributing
 
 Fork the repository, make your changes, and submit a pull request for review. 
-
 
 
