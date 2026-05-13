@@ -55,10 +55,33 @@ You're done! Access the app at `localhost:8501` in your browser.
 
 The recommender system works by loading a set of random video links. Once the user hits the Run button, a video will be shown, and the system will suggest whether it recommends the video or not. The user can then provide feedback using "pain" or "pleasure" signals to guide the recommendation process. Based on this feedback, the system adjusts its responses and suggests another video. This cycle continues, allowing for more accurate and personalized recommendations over time.
 
+## Pet Adoption Domain Demo
+
+This fork also includes a pet adoption recommender domain that maps adopter context to a local catalog of adoptable pets. It keeps the same AO-compatible input shape as the original recommender, `arch_i = [3, 2, 1, 2]`, using:
+
+- 3 bits for species
+- 2 bits for energy level
+- 1 bit for child-friendly fit
+- 2 bits for the adopter's goal
+
+The demo can run without private AO packages through a deterministic fallback ranker:
+
+```bash
+python3 pet_adoption_recommender.py --species cat --home apartment --activity low --goal companion
+python3 pet_adoption_recommender.py --species dog --home house --activity high --children --experience experienced --goal active
+```
+
+To use the Streamlit UI:
+
+```bash
+streamlit run pet_adoption_recommender.py
+```
+
+The domain code lives in `pet_adoption_domain.py`, the demo entrypoint is `pet_adoption_recommender.py`, and the AO architecture is defined in `arch__PetAdoptionRecommender.py`.
+
 
 ## Contributing
 
 Fork the repository, make your changes, and submit a pull request for review. 
-
 
 
