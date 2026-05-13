@@ -31,6 +31,28 @@ If you plan to run the app in a conda or virtual environment, make sure to set u
 
 4. Once running, the app will be accessible at `localhost:8501`.
 
+### Career Domain Demo
+
+This repository also includes a career and job-search domain adaptation that recommends next actions from a local catalog. It can use AO packages when installed, and it includes a deterministic fallback so reviewers can run it without private packages or paid APIs.
+
+Run the career demo:
+
+```bash
+streamlit run career_recommender.py
+```
+
+Run the fallback CLI:
+
+```bash
+python career_recommender.py
+```
+
+Run the career domain tests:
+
+```bash
+python -m unittest tests/test_career_domain.py
+```
+
 
 ### Docker Installation
 
@@ -55,10 +77,11 @@ You're done! Access the app at `localhost:8501` in your browser.
 
 The recommender system works by loading a set of random video links. Once the user hits the Run button, a video will be shown, and the system will suggest whether it recommends the video or not. The user can then provide feedback using "pain" or "pleasure" signals to guide the recommendation process. Based on this feedback, the system adjusts its responses and suggests another video. This cycle continues, allowing for more accurate and personalized recommendations over time.
 
+The career demo follows the same continuous-feedback pattern with a different domain. It encodes each action into the same eight-bit AO-compatible input shape using action track, time commitment, confidence need, and the user's current career goal. User feedback updates fallback rankings immediately and trains an AO Agent when optional AO packages are available.
+
 
 ## Contributing
 
 Fork the repository, make your changes, and submit a pull request for review. 
-
 
 
