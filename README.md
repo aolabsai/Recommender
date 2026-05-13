@@ -55,6 +55,29 @@ You're done! Access the app at `localhost:8501` in your browser.
 
 The recommender system works by loading a set of random video links. Once the user hits the Run button, a video will be shown, and the system will suggest whether it recommends the video or not. The user can then provide feedback using "pain" or "pleasure" signals to guide the recommendation process. Based on this feedback, the system adjusts its responses and suggests another video. This cycle continues, allowing for more accurate and personalized recommendations over time.
 
+## Community Volunteering Domain
+
+This repository also includes a self-contained community volunteering recommender demo for the AO Labs domain expansion bounty. It uses a local catalog of opportunities, encodes opportunity attributes plus the user's goal into the same 8-bit AO-compatible input shape, and falls back to deterministic ranking when `ao_core` and `ao_arch` are not installed.
+
+Run the CLI fallback:
+
+```bash
+python volunteer_recommender.py --goal high_impact --max-time short --skilled-ok
+```
+
+Run the Streamlit demo:
+
+```bash
+streamlit run volunteer_recommender.py
+```
+
+Validate the domain:
+
+```bash
+python -m unittest tests/test_volunteer_domain.py
+python -m py_compile volunteer_domain.py volunteer_recommender.py arch__VolunteerRecommender.py
+```
+
 
 ## Contributing
 
