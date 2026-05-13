@@ -2,7 +2,9 @@ import unittest
 
 from board_game_domain import (
     BOARD_GAME_CATALOG,
+    BoardGame,
     encode_game,
+    normalize_context,
     recommend_games,
     score_game,
 )
@@ -54,6 +56,29 @@ class BoardGameDomainTest(unittest.TestCase):
     def test_invalid_player_count_is_rejected(self):
         with self.assertRaises(ValueError):
             recommend_games({"players": 0, "available_minutes": 60})
+
+    def test_unknown_mood_defaults_to_casual(self):
+        normalized = normalize_context(
+            {"players": 4, "available_minutes": 60, "mood": "mystery"}
+        )
+
+        self.assertEqual(normalized["mood"], "casual")
+
+    def test_unknown_duration_bucket_is_unplayable(self):
+        custom = BoardGame(
+            title="Prototype",
+            game_type="strategy",
+            duration_bucket="unknown",
+            complexity="medium",
+            interaction="medium",
+            min_players=1,
+            max_players=4,
+            teach_minutes=10,
+            mood_tags=("casual",),
+            best_for="testing custom catalog resilience",
+        )
+
+        self.assertLess(score_game(custom, {"players": 2, "available_minutes": 60}), -99)
 
     def test_score_marks_unplayable_games_low(self):
         duel = next(item for item in BOARD_GAME_CATALOG if item.title == "Splendor Duel")

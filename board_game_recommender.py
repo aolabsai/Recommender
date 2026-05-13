@@ -52,7 +52,7 @@ def maybe_score_with_ao(binary_input: list[int]) -> float | None:
         import ao_core as ao
 
         from arch__BoardGameRecommender import arch
-    except Exception:
+    except ImportError:
         return None
 
     agent = ao.Agent(arch, notes="Board Game Night Recommender")

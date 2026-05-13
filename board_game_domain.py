@@ -202,10 +202,14 @@ def _bits(value: int, width: int) -> list[int]:
 
 
 def _index_or_default(values: list[str], value: str, default: str) -> int:
+    return values.index(_choice_or_default(values, value, default))
+
+
+def _choice_or_default(values: list[str], value: str, default: str) -> str:
     normalized = (value or default).lower()
     if normalized not in values:
-        normalized = default
-    return values.index(normalized)
+        return default
+    return normalized
 
 
 def normalize_context(context: dict[str, Any] | None) -> dict[str, Any]:
@@ -221,7 +225,9 @@ def normalize_context(context: dict[str, Any] | None) -> dict[str, Any]:
     return {
         "players": players,
         "available_minutes": available_minutes,
-        "mood": str(context.get("mood", "casual")).lower(),
+        "mood": _choice_or_default(
+            TABLE_MOODS, str(context.get("mood", "casual")), "casual"
+        ),
         "preferred_type": str(context.get("preferred_type", "")).lower(),
         "complexity": str(context.get("complexity", "any")).lower(),
         "social_energy": str(context.get("social_energy", "medium")).lower(),
@@ -282,7 +288,9 @@ def score_game(
     if not (game.min_players <= normalized["players"] <= game.max_players):
         return -100.0
 
-    game_minutes = BUCKET_MINUTES[game.duration_bucket]
+    game_minutes = BUCKET_MINUTES.get(game.duration_bucket)
+    if game_minutes is None:
+        return -100.0
     if game_minutes > normalized["available_minutes"]:
         return -100.0
 
