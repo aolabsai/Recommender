@@ -31,6 +31,18 @@ If you plan to run the app in a conda or virtual environment, make sure to set u
 
 4. Once running, the app will be accessible at `localhost:8501`.
 
+### Open-source issue recommender demo
+
+This fork also includes a second domain demo for recommending open-source issues to contributors.
+It uses a local issue catalog and maps each task to the AO-compatible 8-bit input shape:
+
+```bash
+streamlit run open_source_issue_app.py
+```
+
+The demo works with a deterministic fallback ranker when `ao_core` / `ao_arch` are not installed,
+and switches on live AO scoring and feedback training when those packages are available.
+
 
 ### Docker Installation
 
