@@ -55,6 +55,17 @@ You're done! Access the app at `localhost:8501` in your browser.
 
 The recommender system works by loading a set of random video links. Once the user hits the Run button, a video will be shown, and the system will suggest whether it recommends the video or not. The user can then provide feedback using "pain" or "pleasure" signals to guide the recommendation process. Based on this feedback, the system adjusts its responses and suggests another video. This cycle continues, allowing for more accurate and personalized recommendations over time.
 
+### Open-source issue recommender domain
+
+This repo also includes an offline open-source issue recommender domain that keeps the same AO-compatible 8-bit input shape:
+
+```bash
+python open_source_issue_recommender.py --area frontend --effort small --level new --beginner-friendly --goal portfolio --stack react --stack css
+python -m unittest discover -s tests -p "test_open_source_issue_domain.py"
+```
+
+The local catalog models issue profiles by area, effort, beginner-friendliness, contributor goal, stack, and risk. The CLI and Streamlit entrypoint can rank issues for a contributor profile and use prior liked or disliked issue feedback to shift future recommendations.
+
 
 ## Contributing
 
